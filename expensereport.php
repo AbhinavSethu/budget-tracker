@@ -104,13 +104,15 @@
             <p><?php echo $useremail ?></p>
         </div>
         <div class="sidebar-heading">Management</div>
-        <div class="list-group list-group-flush">
-            <a href="index.php" class="list-group-item list-group-item-action "><span data-feather="home"></span> Dashboard</a>
-            <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-            <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
-            <a href="expensereport.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="file-text"></span> Expense Report</a>
+      <div class="list-group list-group-flush">
+        <a href="index.php" class="list-group-item list-group-item-action "><span data-feather="home"></span> Dashboard</a>
+        <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
+        <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
+        <a href="expensereport.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="file-text"></span> Expense Report</a>
+        <a href="add_income.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Income</a>
 
-        </div>
+     
+      </div>
         <div class="sidebar-heading">Settings </div>
         <div class="list-group list-group-flush">
             <a href="profile.php" class="list-group-item list-group-item-action "><span data-feather="user"></span> Profile</a>

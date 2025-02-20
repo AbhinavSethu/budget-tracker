@@ -20,12 +20,13 @@ if (isset($_REQUEST['firstname'])) {
     $query = "INSERT into `users` (firstname, lastname, password, email) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email' )";
     $result = mysqli_query($con, $query);
     if ($result) {
+      
       header("Location: login.php");
-    }
+      exit(); // Make sure execution stops
   } else {
     echo ("ERROR: Please Check Your Password & Confirmation password");
   }
-}
+}}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +44,10 @@ if (isset($_REQUEST['firstname'])) {
   <link href="css/bootstrap.css" rel="stylesheet">
   <style>
     body {
-      color: #000;
-      background: #fff;
-      font-family: 'Roboto', sans-serif;
-    }
+  background: url('uploads/register.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+}
 
     .form-control {
       height: 40px;

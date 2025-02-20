@@ -42,7 +42,9 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
         <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
         <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
         <a href="expensereport.php" class="list-group-item list-group-item-action"><span data-feather="file-text"></span> Expense Report</a>
+        <a href="add_income.php" class="list-group-item list-group-item-action"><span data-feather="file-text"></span> Add Income</a>
 
+     
       </div>
       <div class="sidebar-heading">Settings </div>
       <div class="list-group list-group-flush">

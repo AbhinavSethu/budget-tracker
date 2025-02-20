@@ -13,7 +13,7 @@ if (isset($_POST['email'])) {
   $rows = mysqli_num_rows($result);
   if ($rows == 1) {
     $_SESSION['email'] = $email;
-    header("Location: index.php");
+    header("Location: dashboard.php");
   } else {
     $errormsg  = "Wrong";
   }
@@ -84,6 +84,11 @@ if (isset($_POST['email'])) {
       font-size: 15px;
       font-weight: bold;
     }
+    body {
+  background: url('uploads/loginbg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+}
   </style>
 </head>
 
