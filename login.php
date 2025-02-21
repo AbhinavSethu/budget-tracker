@@ -15,8 +15,9 @@ if (isset($_POST['email'])) {
     $_SESSION['email'] = $email;
     header("Location: dashboard.php");
   } else {
-    $errormsg  = "Wrong";
+    $errormsg  = "wrong";
   }
+   
 } else {
 }
 ?>
@@ -35,11 +36,13 @@ if (isset($_POST['email'])) {
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
   <style>
-    .login-form {
-      width: 340px;
-      margin: 50px auto;
-      font-size: 15px;
-    }
+.login-form {
+  width: 450px;
+  padding: 30px;
+  font-size: 15px;
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 8px}
 
     .login-form form {
       margin-bottom: 15px;
@@ -88,6 +91,12 @@ if (isset($_POST['email'])) {
   background: url('uploads/loginbg.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure full height */
+  margin: 0;
+
 }
   </style>
 </head>

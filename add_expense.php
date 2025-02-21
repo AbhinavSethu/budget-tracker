@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
     $expensecategory = $_POST['expensecategory'];
 
     $sql = "UPDATE expenses SET expense='$expenseamount', expensedate='$expensedate', expensecategory='$expensecategory' WHERE user_id='$userid' AND expense_id='$id'";
-    if (mysqli_query($con, $sql)) {
+    if (mysqli_query(mysql: $con, query: $sql)) {
         echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
@@ -101,6 +101,8 @@ if (isset($_GET['delete'])) {
   color: #333;    /* Adjust the color as needed */
   padding: 15px 70px 5px 0px;   /* Adjust the padding as needed */
 }
+
+
 </style>
 </head>
 
@@ -117,12 +119,13 @@ if (isset($_GET['delete'])) {
       </div>
       <div class="sidebar-heading">Management</div>
       <div class="list-group list-group-flush">
-        <a href="dashboard.php" class="list-group-item list-group-item-action "><span data-feather="home"></span> Dashboard</a>
+      <a href="dashboard.php" class="list-group-item list-group-item-action "><span data-feather="home"></span> Dashboard</a>
         <a href="add_expense.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="plus-square"></span> Add Expenses</a>
         <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
         <a href="expensereport.php" class="list-group-item list-group-item-action"><span data-feather="file-text"></span> Expense Report</a>
-        <a href="add_income.php" class="list-group-item list-group-item-action"><span data-feather="file-text"></span> Add Income</a>
-
+        <a href="add_income.php" class="list-group-item list-group-item-action"><span data-feather="plus-square"></span> Add Income</a>
+        <a href="manage_income.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Income</a>
+        <a href="incomereport.php" class="list-group-item list-group-item-action "><span data-feather="file-text"></span> Income Report</a>
      
       </div>
       <div class="sidebar-heading">Settings </div>
@@ -149,64 +152,61 @@ if (isset($_GET['delete'])) {
                 <hr>                        
             </nav>
 
-            <div class="container">
-               
-                <div class="row ">
+            <div class="container d-flex align-items-center justify-content-center vh-100 mt-n5">
+    <div class="col-md-6">
+        <form action="" method="POST" class="p-4 border rounded shadow">
+            <h4 class="text-center mb-4">Add Your Daily Expenses</h4>
 
-                    <div class="col-md-3"></div>
-
-                    <div class="col-md" style="margin:0 auto;">
-                        <form action="" method="POST">
-                            <div class="form-group row" style="margin-top: 20px;">
-                                <label for="expenseamount" class="col-sm-6 col-form-label"><b>Enter Amount</b></label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control col-sm-12" value="<?php echo $expenseamount; ?>" id="expenseamount" name="expenseamount" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="expensedate" class="col-sm-6 col-form-label"><b>Date</b></label>
-                                <div class="col-md-6">
-                                    <input type="date" class="form-control col-sm-12" value="<?php echo $expensedate; ?>" name="expensedate" id="expensedate" required>
-                                </div>
-                            </div>
-<fieldset class="form-group">
-    <div class="row">
-        <label class="col-form-label col-sm-6 pt-0"><b>Category</b></label>
-        <div class="col-md">
-            <select class="form-control" id="expensecategory" name="expensecategory" required>
-                <?php
-                $categories_query = "SELECT * FROM expense_categories";
-                $categories_result = mysqli_query($con, $categories_query);
-
-                while ($row = mysqli_fetch_assoc($categories_result)) {
-                    $category_name = $row['category_name'];
-                    $selected = ($category_name === $expensecategory) ? 'selected' : '';
-                    echo "<option value=\"$category_name\" $selected>$category_name</option>";
-                }
-                ?>
-            </select>
-        </div>
-    </div>
-</fieldset>
-
-                            <div class="form-group row">
-                                <div class="col-md-12 text-right">
-                                    <?php if ($update == true) : ?>
-                                        <button class="btn btn-lg btn-block btn-warning" style="border-radius: 0%;" type="submit" name="update">Update</button>
-                                    <?php elseif ($del == true) : ?>
-                                        <button class="btn btn-lg btn-block btn-danger" style="border-radius: 0%;" type="submit" name="delete">Delete</button>
-                                    <?php else : ?>
-                                        <button type="submit" name="add" class="btn btn-lg btn-block btn-success" style="border-radius: 0%;">Add Expense</button>
-                                    <?php endif ?>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-md-3"></div>
-                    
+            <!-- Amount Field -->
+            <div class="form-group row">
+                <label for="expenseamount" class="col-sm-4 col-form-label text-right"><b>Enter Amount</b></label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" value="<?php echo $expenseamount; ?>" id="expenseamount" name="expenseamount" required>
                 </div>
             </div>
+
+            <!-- Date Field -->
+            <div class="form-group row">
+                <label for="expensedate" class="col-sm-4 col-form-label text-right"><b>Date</b></label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" value="<?php echo $expensedate; ?>" name="expensedate" id="expensedate" required>
+                </div>
+            </div>
+
+            <!-- Category Dropdown -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label text-right"><b>Category</b></label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="expensecategory" name="expensecategory" required>
+                        <?php
+                        $categories_query = "SELECT * FROM expense_categories";
+                        $categories_result = mysqli_query($con, $categories_query);
+
+                        while ($row = mysqli_fetch_assoc($categories_result)) {
+                            $category_name = $row['category_name'];
+                            $selected = ($category_name === $expensecategory) ? 'selected' : '';
+                            echo "<option value=\"$category_name\" $selected>$category_name</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group text-center mt-4">
+                <?php if ($update == true) : ?>
+                    <button class="btn btn-warning btn-lg btn-block" type="submit" name="update">Update</button>
+                <?php elseif ($del == true) : ?>
+                    <button class="btn btn-danger btn-lg btn-block" type="submit" name="delete">Delete</button>
+                <?php else : ?>
+                    <button type="submit" name="add" class="btn btn-success btn-lg btn-block">Add Expense</button>
+                <?php endif ?>
+            </div>
+        </form>
+    </div>
+</div>
+
+
         </div>
         <!-- /#page-content-wrapper -->
 

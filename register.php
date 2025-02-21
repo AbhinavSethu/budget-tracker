@@ -47,7 +47,13 @@ if (isset($_REQUEST['firstname'])) {
   background: url('uploads/register.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Ensure full height */
+  margin: 0;
 }
+
 
     .form-control {
       height: 40px;
@@ -65,11 +71,14 @@ if (isset($_REQUEST['firstname'])) {
     }
 
     .signup-form {
-      width: 450px;
-      margin: 0 auto;
-      padding: 30px 0;
-      font-size: 15px;
-    }
+  width: 450px;
+  padding: 30px;
+  font-size: 15px;
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+    
 
     .signup-form h2 {
       color: #636363;
